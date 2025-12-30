@@ -1,0 +1,26 @@
+
+
+import React from "react";
+
+const FleetCard = React.memo(({ fleet, onUpdate, onToggle, onDelete }) => {
+  const updateDriver = () => {
+    const name = prompt("Enter new driver name");
+    if (!name || !name.trim()) return;
+    onUpdate(fleet.id, name);
+  };
+
+  return (
+    <div>
+      <h4>{fleet.regNo}</h4>
+      <p>Category: {fleet.category}</p>
+      <p>Driver: {fleet.driver}</p>
+      <p>Status: {fleet.available ? "Available" : "Not Available"}</p>
+
+      <button onClick={updateDriver}>Update Driver</button>
+      <button onClick={() => onToggle(fleet.id)}>Toggle Availability</button>
+      <button onClick={() => onDelete(fleet.id)}>Delete</button>
+    </div>
+  );
+});
+
+export default FleetCard;
